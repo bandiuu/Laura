@@ -1,3 +1,10 @@
+/* 1. RESETEO TOTAL PARA MÓVIL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Esto evita que el padding empuje la caja a la derecha */
+}
+
 :root {
     --primary-yellow: #FFD700;
     --gold: #D4AF37;
@@ -5,60 +12,65 @@
     --text-color: #5D4037;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    /* Fondo con degradado para que no se vea plano */
     background: radial-gradient(circle, #fffdf0 0%, #fff9c4 100%);
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
     overflow: hidden;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    /* Centrado absoluto del cuerpo */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* 2. CONTENEDOR PRINCIPAL */
 .container {
     z-index: 10;
-    width: 90%;
-    max-width: 500px;
+    width: 100%; 
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centra la tarjeta horizontalmente */
+    align-items: center;
+    padding: 20px; /* Espacio de seguridad para que no toque los bordes del cel */
 }
 
+/* 3. LA TARJETA (Aquí está el truco del centrado) */
 .glass-card {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    padding: 40px 30px;
+    padding: 40px 20px;
     border-radius: 30px;
     border: 1px solid rgba(212, 175, 55, 0.3);
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    text-align: center; /* ESTO CENTRA TODO EL TEXTO */
+    
     width: 100%;
+    max-width: 400px; /* Tamaño ideal para móvil */
+    
+    /* Centrado de los elementos hijos */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+    
     animation: fadeIn 1.5s ease-out;
 }
 
 .title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: var(--gold);
     margin-bottom: 20px;
-    line-height: 1.2;
+    width: 100%; /* Ocupa todo el ancho para centrarse bien */
 }
 
 .message {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.05rem;
+    line-height: 1.7;
     margin-bottom: 30px;
-    display: block;
-    text-align: center; /* REFUERZO DE CENTRADO */
+    width: 100%;
+    word-wrap: break-word; /* Evita que palabras largas empujen el diseño */
 }
 
 .btn {
@@ -68,29 +80,35 @@ body {
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
     color: #5d4037;
+    /* Evita que el botón se estire */
+    width: fit-content; 
 }
 
-.btn:active {
-    transform: scale(0.95);
+/* 4. ANIMACIONES */
+.sunflower-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .floating-sunflower {
     position: absolute;
-    pointer-events: none;
+    opacity: 0;
     animation: floatAndRotate linear infinite;
 }
 
 @keyframes floatAndRotate {
     0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
     10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
     100% { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
