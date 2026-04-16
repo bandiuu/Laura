@@ -3,7 +3,6 @@
     --gold: #D4AF37;
     --bg-pastel: #FFFDF0;
     --text-color: #5D4037;
-    --white-glass: rgba(255, 255, 255, 0.8);
 }
 
 * {
@@ -13,24 +12,14 @@
 }
 
 body {
-    background-color: var(--bg-pastel);
+    background: radial-gradient(circle, rgba(255,253,240,1) 0%, rgba(255,248,200,1) 100%);
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
-    overflow: hidden; /* Evita scroll mientras cargan animaciones */
+    overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Animación de entrada de la página */
-.fade-in {
-    animation: fadeInPage 2s ease-in forwards;
-}
-
-@keyframes fadeInPage {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .container {
@@ -41,48 +30,54 @@ body {
 }
 
 .glass-card {
-    background: var(--white-glass);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     padding: 40px;
     border-radius: 30px;
-    border: 2px solid var(--primary-yellow);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2), 0 0 15px rgba(255, 215, 0, 0.2);
+    animation: cardEntrance 1.5s ease-out;
+}
+
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: var(--gold);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .message {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    margin-bottom: 35px;
     min-height: 100px;
-    margin-bottom: 30px;
 }
 
-/* Botón Moderno */
 .btn {
     background-color: var(--primary-yellow);
     border: none;
     padding: 12px 25px;
-    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2);
+    animation: btnPulse 3s infinite;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-    background-color: var(--gold);
-    color: white;
+@keyframes btnPulse {
+    0% { box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2); }
+    50% { box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5); }
+    100% { box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2); }
 }
 
-/* Girasoles animados */
 .sunflower-bg {
     position: fixed;
     top: 0;
@@ -94,20 +89,13 @@ body {
 
 .floating-sunflower {
     position: absolute;
-    font-size: 2rem;
-    animation: float 8s linear infinite;
-    opacity: 0.6;
+    opacity: 0;
+    animation: floatAndRotate linear infinite;
 }
 
-@keyframes float {
-    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .title { font-size: 1.8rem; }
-    .message { font-size: 1rem; }
+@keyframes floatAndRotate {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-20vh) rotate(360deg) scale(0.8); opacity: 0; }
 }
