@@ -1,92 +1,78 @@
-/* 1. RESETEO TOTAL PARA MÓVIL */
+/* RESETEO TOTAL */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Esto evita que el padding empuje la caja a la derecha */
-}
-
-:root {
-    --primary-yellow: #FFD700;
-    --gold: #D4AF37;
-    --bg-pastel: #FFFDF0;
-    --text-color: #5D4037;
+    box-sizing: border-box;
 }
 
 body {
     background: radial-gradient(circle, #fffdf0 0%, #fff9c4 100%);
     font-family: 'Poppins', sans-serif;
-    color: var(--text-color);
-    overflow: hidden;
+    color: #5D4037;
+    overflow: hidden; /* Evita que la página se mueva de lado */
     height: 100vh;
-    width: 100%;
-    /* Centrado absoluto del cuerpo */
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 2. CONTENEDOR PRINCIPAL */
 .container {
-    z-index: 10;
-    width: 100%; 
+    width: 100%;
+    max-width: 100%;
     display: flex;
-    justify-content: center; /* Centra la tarjeta horizontalmente */
+    justify-content: center;
     align-items: center;
-    padding: 20px; /* Espacio de seguridad para que no toque los bordes del cel */
+    padding: 15px;
 }
 
-/* 3. LA TARJETA (Aquí está el truco del centrado) */
 .glass-card {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 40px 20px;
-    border-radius: 30px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     
+    /* ESTO ES LO QUE ARREGLA EL CENTRADO */
     width: 100%;
-    max-width: 400px; /* Tamaño ideal para móvil */
+    max-width: 350px; /* Tamaño seguro para cualquier iPhone/Android */
+    margin: 0 auto; 
     
-    /* Centrado de los elementos hijos */
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     text-align: center;
-    
-    animation: fadeIn 1.5s ease-out;
 }
 
 .title {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    width: 100%; /* Ocupa todo el ancho para centrarse bien */
+    font-size: 1.8rem; /* Un poco más pequeño para que no se desborde */
+    color: #D4AF37;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 .message {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
+    font-size: 0.95rem; /* Fuente más segura para móvil */
+    line-height: 1.6;
+    margin-bottom: 25px;
     width: 100%;
-    word-wrap: break-word; /* Evita que palabras largas empujen el diseño */
+    color: #5D4037;
 }
 
 .btn {
-    background-color: var(--primary-yellow);
+    background-color: #FFD700;
     border: none;
-    padding: 14px 28px;
+    padding: 12px 24px;
     font-weight: 600;
     border-radius: 50px;
-    cursor: pointer;
+    font-size: 0.9rem;
+    color: #5D4037;
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-    color: #5d4037;
-    /* Evita que el botón se estire */
-    width: fit-content; 
 }
 
-/* 4. ANIMACIONES */
 .sunflower-bg {
     position: fixed;
     top: 0;
@@ -94,11 +80,11 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1;
 }
 
 .floating-sunflower {
     position: absolute;
-    opacity: 0;
     animation: floatAndRotate linear infinite;
 }
 
@@ -106,9 +92,4 @@ body {
     0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
     10% { opacity: 0.8; }
     100% { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
